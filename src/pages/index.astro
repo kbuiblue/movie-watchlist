@@ -1,70 +1,86 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import NavBar from '../components/NavBar.astro';
-import SearchBar from '../components/SearchBar.astro';
+import Layout from "../layouts/Layout.astro";
+import MovieCard from "../components/MovieCard.astro";
+import NavBar from "../components/NavBar.astro";
+import SearchBar from "../components/SearchBar.astro";
 ---
 
 <Layout title="Movie Watchlist">
-	<NavBar title="Find your " highlight="film" />
-	<SearchBar />
-	<main>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+    <NavBar title="Find your " highlight="film" />
+    <SearchBar />
+    <main>
+        <ul role="list" class="link-card-grid">
+            <MovieCard
+                src="https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
+                href="/movie-details.astro"
+                title="Blade Runner"
+                imdbRating="8.1"
+				runtime="117 min"
+                genre="Drama, Mystery, Sci-fi"
+                plot="A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator."
+            />
+			<MovieCard
+                src="https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
+                href="/movie-details.astro"
+                title="Blade Runner"
+                imdbRating="8.1"
+				runtime="117 min"
+                genre="Drama, Mystery, Sci-fi"
+                plot="A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator."
+            />
+			<MovieCard
+                src="https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
+                href="/movie-details.astro"
+                title="Blade Runner"
+                imdbRating="8.1"
+				runtime="117 min"
+                genre="Drama, Mystery, Sci-fi"
+                plot="A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator."
+            />
+			<MovieCard
+                src="https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
+                href="/movie-details.astro"
+                title="Blade Runner"
+                imdbRating="8.1"
+				runtime="117 min"
+                genre="Drama, Mystery, Sci-fi"
+                plot="A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator."
+            />
+        </ul>
+    </main>
 </Layout>
 
 <style>
-	main {
-		margin: 1em auto;
-		align-self: center;
-		width: 900px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
+    main {
+        margin: 2em auto;
+        align-self: center;
+        width: 900px;
+        max-width: calc(100% - 2rem);
+        color: white;
+        font-size: 20px;
+        line-height: 1.6;
+    }
+    .astro-a {
+        position: absolute;
+        top: -32px;
+        left: 50%;
+        transform: translatex(-50%);
+        width: 220px;
+        height: auto;
+        z-index: -1;
+    }
+    h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        margin-bottom: 1em;
+    }
 
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
+    .link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
+        gap: 2rem;
+        padding: 0;
+    }
 </style>
