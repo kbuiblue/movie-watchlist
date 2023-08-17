@@ -1,0 +1,75 @@
+<div class="search-container">
+    <div class="search-bar">
+        <img src="/search-icon.svg" />
+        <input type="text" placeholder="Search by title" />
+    </div>
+    <button class="search-button">Search</button>
+</div>
+
+<style>
+    .search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        gap: 0.5em;
+        top: 27%;
+        width: 45%;
+        user-select: none;
+    }
+
+    .search-bar {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 5vh;
+        border: 1px solid rgba(var(--accent-light), 25%);
+        background: linear-gradient(
+            rgba(19, 21, 26, 36%),
+            rgba(18, 18, 18, 13%)
+        );
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .search-bar img {
+        margin-left: 1em;
+    }
+
+    .search-bar input {
+        background: none;
+        border: none;
+        color: rgb(var(--accent-light));
+        font-size: medium;
+        width: 85%;
+        max-height: 10vh;
+        margin-left: 1em;
+    }
+
+    .search-bar input::placeholder {
+        color: rgba(255, 255, 255, 70%);
+    }
+
+    .search-bar input:focus {
+        outline: none;
+    }
+
+    .search-container .search-button {
+        font-weight: bold;
+        min-height: 20%;
+        background: rgba(var(--accent-dark), 80%);
+        color: rgb(var(--accent-light));
+        border: 1px solid rgba(var(--accent-light), 25%);
+        border-radius: 10px;
+        padding: 1.25em 5em;
+        cursor: pointer;
+    }
+
+    .search-button:hover {
+        background-color: rgba(var(--accent-light), 25%);
+    }
+
+    .search-button:active {
+        transform: scale(0.9);
+    }
+</style>

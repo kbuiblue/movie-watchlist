@@ -12,13 +12,14 @@ const { href, title, body } = Astro.props;
 	<a href={href}>
 		<h2>
 			{title}
-			<span>&rarr;</span>
+			<img src="/star-icon.svg"></img>
 		</h2>
 		<p>
 			{body}
 		</p>
 	</a>
 </li>
+
 <style>
 	.link-card {
 		list-style: none;

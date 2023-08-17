@@ -1,0 +1,67 @@
+---
+interface props {
+    title: string;
+    highlight: string;
+}
+
+const { title, highlight } = Astro.props;
+---
+
+<nav class="nav-bar">
+    <div class="nav">
+        <h1 class="heading">
+            {title}<span class="text-gradient">{highlight}</span>
+        </h1>
+        <h2 class="watchlist">My Watchlist</h2>
+    </div>
+</nav>
+
+<style>
+    .nav-bar {
+        background: url("/movie-banner.png");
+        display: flex;
+        min-height: 280px;
+        max-height: 300px;
+        align-self: flex-start;
+        width: 70vw;
+        background-repeat: no-repeat;
+        background-size: cover;
+        user-select: none;
+    }
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        max-height: 250px;
+        margin: 0 auto;
+        padding: 1em;
+        color: #ffffff;
+        font-size: xx-large;
+    }
+
+    .nav .heading {
+        margin: 0;
+    }
+
+    .nav .watchlist {
+        font-size: large;
+        text-decoration: underline;
+        cursor: pointer;
+        user-select: none;
+        margin: 0;
+    }
+
+    .nav .watchlist:active {
+        color: rgb(var(--accent-light));
+    }
+
+    .text-gradient {
+        background-image: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400%;
+        background-position: 0%;
+    }
+</style>
