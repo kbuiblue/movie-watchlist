@@ -3,9 +3,9 @@ interface Props {
     src: string;
     href: string;
     title: string;
-	imdbRating: string;
-	runtime: string;
-	genre: string;
+    imdbRating: string;
+    runtime: string;
+    genre: string;
     plot: string;
 }
 
@@ -23,18 +23,19 @@ const { href, src, title, imdbRating, runtime, genre, plot } = Astro.props;
                 <img class="star-icon" src="/star-icon.svg" />
                 <h2>{imdbRating}</h2>
             </div>
-			<div class="mid-info">
-				<p>{runtime}</p>
-				<p>{genre}</p>
-				<div class="watchlist-add">
-					<img src="/add-icon.svg">
-					<p>Add to Watchlist</p>
-				</div>
-			</div>
-			<p class="plot">
-				{plot}
-			</p>
-		</a>
+        </a>
+
+        <div class="mid-info">
+            <p>{runtime}</p>
+            <p>{genre}</p>
+            <div class="watchlist-add">
+                <img src="/add-icon.svg" />
+                <p>Add to Watchlist</p>
+            </div>
+        </div>
+        <p class="plot">
+            {plot}
+        </p>
     </div>
 </li>
 
@@ -42,7 +43,9 @@ const { href, src, title, imdbRating, runtime, genre, plot } = Astro.props;
     .movie-card {
         list-style: none;
         display: grid;
-        grid-template-columns: 13vw 1fr;
+        grid-template-columns: 8em 2em 1fr;
+        grid-template-areas:
+            "poster . info";
         padding: 2em 3em;
         background-color: #23262d;
         background-image: none;
@@ -50,7 +53,7 @@ const { href, src, title, imdbRating, runtime, genre, plot } = Astro.props;
         border-radius: 7px;
         background-position: 100%;
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-        cursor: pointer;
+        user-select: none;
     }
     /* .movie-card > a {
         width: 100%;
@@ -62,15 +65,17 @@ const { href, src, title, imdbRating, runtime, genre, plot } = Astro.props;
     } */
 
     .movie-poster {
-        max-width: 9vw;
+        grid-area: poster;
+        max-width: 8em;
     }
 
-	.movie-info {
-		display: flex;
-		min-height: 100%;
-		flex-direction: column;
-		justify-content: center;
-	}
+    .movie-info {
+        grid-area: info;
+        display: flex;
+        min-height: 100%;
+        flex-direction: column;
+        justify-content: center;
+    }
 
     .movie-info,
     .movie-info a {
@@ -79,52 +84,50 @@ const { href, src, title, imdbRating, runtime, genre, plot } = Astro.props;
         line-height: 1.4;
     }
 
-	.movie-info > div {
-		margin-bottom: 1em;
-	}
+    .movie-info > div {
+        margin-bottom: 1em;
+    }
 
     .top-info {
         display: flex;
         width: fit-content;
         justify-content: space-around;
+        cursor: pointer;
     }
 
     .top-info .star-icon {
         margin: 0 0.75em;
     }
 
-	.mid-info {
-		display: flex;
-		font-size: medium;
-		justify-content: flex-start;
-		gap: 2em;
-	}
+    .mid-info {
+        display: flex;
+        font-size: medium;
+        justify-content: flex-start;
+        gap: 2em;
+    }
 
-	.watchlist-add {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin: 0;
-		gap: 0.5em;
-		z-index: 2;
-	}
+    .watchlist-add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        gap: 0.5em;
+        cursor: pointer;
+    }
 
-	.watchlist-add:active {
-		transform: scale(0.9);
-	}
+    .watchlist-add:active {
+        transform: scale(0.9);
+        color: rgb(var(--accent-light));
+    }
 
-	.plot {
-		margin: 0;
-	}
+    .plot {
+        margin: 0;
+    }
 
     h2 {
         margin: 0;
         font-size: 1.25rem;
     }
-
-	a {
-		z-index: 0;
-	}
 
     .movie-card:is(:hover, :focus-within) {
         box-shadow: inset 0 0 0 1px rgba(var(--accent-light), 50%);
