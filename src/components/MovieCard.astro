@@ -39,13 +39,45 @@ const { href, src, title, imdbRating, runtime, genre, plot } = Astro.props;
     </div>
 </li>
 
+<script>
+
+    // export const MovieCard = (props: Props) => {
+
+    //     return (
+    //         <li class="movie-card">
+    //             <a href={data.href}>
+    //                 <img class="movie-poster" src={data.src} />
+    //             </a>
+    //             <div class="movie-info">
+    //                 <a href={data.href}>
+    //                     <div class="top-info">
+    //                         <h2>{data.title}</h2>
+    //                         <img class="star-icon" src="/star-icon.svg" />
+    //                         <h2>{data.imdbRating}</h2>
+    //                     </div>
+    //                 </a>
+
+    //                 <div class="mid-info">
+    //                     <p>{data.runtime}</p>
+    //                     <p>{data.genre}</p>
+    //                     <div class="watchlist-add">
+    //                         <img src="/add-icon.svg" />
+    //                         <p>Add to Watchlist</p>
+    //                     </div>
+    //                 </div>
+    //                 <p class="plot">{data.plot}</p>
+    //             </div>
+    //         </li>
+    //     );
+    // };
+</script>
+
 <style>
     .movie-card {
         list-style: none;
         display: grid;
         grid-template-columns: 8em 2em 1fr;
-        grid-template-areas:
-            "poster . info";
+        grid-template-areas: "poster . info";
         padding: 2em 3em;
         background-color: #23262d;
         background-image: none;

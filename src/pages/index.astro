@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 import Layout from "../layouts/Layout.astro";
 import MovieCard from "../components/MovieCard.astro";
 import NavBar from "../components/NavBar.astro";
@@ -6,49 +8,62 @@ import SearchBar from "../components/SearchBar.astro";
 ---
 
 <Layout title="Movie Watchlist">
-    <NavBar title="Find your " highlight="film" />
+    <NavBar
+        title="Find your "
+        highlight="film"
+        href="/watchlist"
+        hrefLabel="My Watchlist"
+    />
     <SearchBar />
     <main>
         <ul role="list" class="link-card-grid">
             <MovieCard
                 src="https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
-                href="/movie-details.astro"
+                href="/movie-details"
                 title="Blade Runner"
                 imdbRating="8.1"
-				runtime="117 min"
+                runtime="117 min"
                 genre="Drama, Mystery, Sci-fi"
                 plot="A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator."
             />
-			<MovieCard
+            <MovieCard
                 src="https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
-                href="/movie-details.astro"
+                href="/movie-details"
                 title="Blade Runner"
                 imdbRating="8.1"
-				runtime="117 min"
+                runtime="117 min"
                 genre="Drama, Mystery, Sci-fi"
                 plot="A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator."
             />
-			<MovieCard
+            <MovieCard
                 src="https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
-                href="/movie-details.astro"
+                href="/movie-details"
                 title="Blade Runner"
                 imdbRating="8.1"
-				runtime="117 min"
+                runtime="117 min"
                 genre="Drama, Mystery, Sci-fi"
                 plot="A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator."
             />
-			<MovieCard
+            <MovieCard
                 src="https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
-                href="/movie-details.astro"
+                href="/movie-details"
                 title="Blade Runner"
                 imdbRating="8.1"
-				runtime="117 min"
+                runtime="117 min"
                 genre="Drama, Mystery, Sci-fi"
                 plot="A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator."
             />
         </ul>
     </main>
 </Layout>
+
+<script>
+    import { $movieData } from "../components/SearchBar.astro";
+
+    const dataListener = $movieData.subscribe((value) => {
+        console.log(value);
+    });
+</script>
 
 <style>
     main {

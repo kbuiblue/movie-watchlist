@@ -2,9 +2,11 @@
 interface Props {
     title: string;
     highlight: string;
+    href: string;
+    hrefLabel: string;
 }
 
-const { title, highlight } = Astro.props;
+const { title, highlight, href, hrefLabel } = Astro.props;
 ---
 
 <nav class="nav-bar">
@@ -12,9 +14,12 @@ const { title, highlight } = Astro.props;
         <h1 class="heading">
             {title}<span class="text-gradient">{highlight}</span>
         </h1>
-        <h2 class="watchlist">My Watchlist</h2>
+        <a href={href}
+            ><h2 class="href-lable">{hrefLabel}</h2></a
+        >
     </div>
 </nav>
+
 
 <style>
     .nav-bar {
@@ -45,16 +50,19 @@ const { title, highlight } = Astro.props;
         margin: 0;
     }
 
-    .nav .watchlist {
+    .nav .href-lable {
         font-size: large;
-        text-decoration: underline;
         cursor: pointer;
         user-select: none;
         margin: 0;
     }
 
-    .nav .watchlist:active {
+    .nav .href-lable:active {
         color: rgb(var(--accent-light));
+    }
+
+    .nav a {
+        color: #fff;
     }
 
     .text-gradient {

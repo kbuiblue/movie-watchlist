@@ -1,0 +1,22 @@
+---
+interface Props {
+    title: string;
+    highlight: string;
+}
+
+const { title, highlight } = Astro.props;
+
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+---
+
+<Layout title="My Watchlist">
+    <NavBar
+        title="My "
+        highlight="Watchlist"
+        href="/"
+        hrefLabel="Find your Film"
+    />
+</Layout>
+
+<script></script>
