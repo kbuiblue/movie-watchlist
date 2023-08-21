@@ -11,9 +11,7 @@ export const prerender = false;
 </div>
 
 <script>
-    import { atom } from "nanostores";
-
-    export const $movieData = atom(null);
+    import { moviesData, addMovie } from "./MovieStore";
 
     const input = document.querySelector<HTMLInputElement>("input");
     const button = document.querySelector<HTMLButtonElement>("button");
@@ -22,6 +20,7 @@ export const prerender = false;
         button.addEventListener("click", async () => {
             const searchTerm: string = input.value
                 .toLowerCase()
+                .trim()
                 .replace(" ", "+");
 
             const res = await fetch(
@@ -29,7 +28,7 @@ export const prerender = false;
             );
             const data = await res.json();
 
-            $movieData.set(data);
+            addMovie(data);
         });
     }
 </script>
@@ -58,6 +57,7 @@ export const prerender = false;
             rgba(19, 21, 26, 76%),
             rgba(18, 18, 18, 33%)
         );
+        backdrop-filter: blur(5px);
         width: 100%;
         max-width: 650px;
         border-radius: 8px;
@@ -94,6 +94,10 @@ export const prerender = false;
         border-radius: 10px;
         padding: 1.25em 5em;
         cursor: pointer;
+    }
+
+    .search-button {
+        backdrop-filter: blur(5px);
     }
 
     @media screen and (hover: hover) {

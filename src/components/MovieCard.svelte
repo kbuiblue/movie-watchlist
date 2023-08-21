@@ -1,76 +1,38 @@
----
-interface Props {
-    src: string;
-    href: string;
-    title: string;
-    imdbRating: string;
-    runtime: string;
-    genre: string;
-    plot: string;
-}
+<script>
+    export let MovieData;
 
-const { href, src, title, imdbRating, runtime, genre, plot } = Astro.props;
----
+    let Poster, Title, imdbRating, Runtime, Genre, Plot;
+
+    $: if (MovieData) {
+        ({ Poster, Title, imdbRating, Runtime, Genre, Plot } = MovieData);
+    }
+
+</script>
 
 <li class="movie-card">
-    <a href={href}> <img class="movie-poster" src={src} /></a>
+    <a href="/movie-details">
+        <img class="movie-poster" alt="" src={Poster} />
+    </a>
     <div class="movie-info">
-        <a href={href}>
+        <a href="/movie-details">
             <div class="top-info">
-                <h2>
-                    {title}
-                </h2>
-                <img class="star-icon" src="/star-icon.svg" />
+                <h2>{Title}</h2>
+                <img class="star-icon" alt="" src="/star-icon.svg" />
                 <h2>{imdbRating}</h2>
             </div>
         </a>
 
         <div class="mid-info">
-            <p>{runtime}</p>
-            <p>{genre}</p>
+            <p>{Runtime}</p>
+            <p>{Genre}</p>
             <div class="watchlist-add">
-                <img src="/add-icon.svg" />
+                <img alt="" src="/add-icon.svg" />
                 <p>Add to Watchlist</p>
             </div>
         </div>
-        <p class="plot">
-            {plot}
-        </p>
+        <p class="plot">{Plot}</p>
     </div>
 </li>
-
-<script>
-
-    // export const MovieCard = (props: Props) => {
-
-    //     return (
-    //         <li class="movie-card">
-    //             <a href={data.href}>
-    //                 <img class="movie-poster" src={data.src} />
-    //             </a>
-    //             <div class="movie-info">
-    //                 <a href={data.href}>
-    //                     <div class="top-info">
-    //                         <h2>{data.title}</h2>
-    //                         <img class="star-icon" src="/star-icon.svg" />
-    //                         <h2>{data.imdbRating}</h2>
-    //                     </div>
-    //                 </a>
-
-    //                 <div class="mid-info">
-    //                     <p>{data.runtime}</p>
-    //                     <p>{data.genre}</p>
-    //                     <div class="watchlist-add">
-    //                         <img src="/add-icon.svg" />
-    //                         <p>Add to Watchlist</p>
-    //                     </div>
-    //                 </div>
-    //                 <p class="plot">{data.plot}</p>
-    //             </div>
-    //         </li>
-    //     );
-    // };
-</script>
 
 <style>
     .movie-card {
@@ -96,7 +58,7 @@ const { href, src, title, imdbRating, runtime, genre, plot } = Astro.props;
         opacity: 0.8;
     } */
 
-    .movie-poster {
+    .movie-card .movie-poster {
         grid-area: poster;
         max-width: 8em;
     }
