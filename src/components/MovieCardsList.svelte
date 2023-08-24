@@ -1,19 +1,83 @@
 <script>
     import MovieCard from "./MovieCard.svelte";
     import { moviesData } from "./MovieStore";
+
+    let movies;
+    $: filteredMovies = movies ? movies.filter((movie) => !movie.Error) : [];
+    moviesData.subscribe((value) => {
+        movies = value;
+    });
 </script>
 
-<ul role="list" class="link-card-grid">
-    {#each $moviesData as MovieData}
-        <MovieCard {MovieData} />
-    {/each}
-</ul>
+{#if movies && movies.length > 0}
+    {#if !movies[0].Error}
+        <ul role="list" class="link-card-grid">
+            {#each filteredMovies as movieData}
+                <MovieCard {movieData} />
+            {/each}
+        </ul>
+    {:else}
+        <div class="error-container">
+            <div class="error-screen">
+                <h3>
+                    Unable to find what you’re looking for. Please try another
+                    search.
+                </h3>
+            </div>
+        </div>
+    {/if}
+{:else}
+    <div class="explore-container">
+        <div class="explore-screen">
+            <img src="/movie-icon.svg" alt="" />
+            <h3>Start exploring</h3>
+        </div>
+    </div>
+{/if}
 
 <style>
+    .explore-container,
+    .error-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 70vh;
+    }
+
+    .explore-screen,
+    .error-screen {
+        text-align: center;
+        padding: 1em;
+    }
+
+    .explore-screen > * {
+        margin-bottom: 0;
+    }
+
+    .explore-screen h3 {
+        margin-top: 0.25em;
+        color: #2e2e2f;
+    }
+
+    .error-screen {
+        min-width: 5vw;
+        max-width: 400px;
+    }
+
+    .error-screen h3 {
+        margin: 0;
+    }
+
     .link-card-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
         gap: 2rem;
         padding: 0;
+    }
+
+    :global(.link-card-grid:has(.movie-card:hover) .movie-card:not(:hover)) {
+        scale: 0.98;
+        opacity: 0.7;
     }
 </style>

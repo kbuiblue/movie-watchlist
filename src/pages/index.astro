@@ -1,6 +1,4 @@
 ---
-export const prerender = false;
-
 import Layout from "../layouts/Layout.astro";
 import MovieCardsList from "../components/MovieCardsList.svelte";
 import NavBar from "../components/NavBar.astro";
@@ -22,12 +20,12 @@ import SearchBar from "../components/SearchBar.astro";
 
 <style>
     main {
-        margin: 2em auto;
+        margin: 3em auto;
         align-self: center;
         width: 900px;
         max-width: calc(100% - 2rem);
         color: white;
-        font-size: 20px;
+        font-size: 1.25rem;
         line-height: 1.6;
     }
     .astro-a {
@@ -38,12 +36,5 @@ import SearchBar from "../components/SearchBar.astro";
         width: 220px;
         height: auto;
         z-index: -1;
-    }
-    h1 {
-        font-size: 4rem;
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        margin-bottom: 1em;
     }
 </style>

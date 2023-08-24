@@ -1,12 +1,12 @@
 <script>
-    export let MovieData;
+    export let movieData;
 
-    let Poster, Title, imdbRating, Runtime, Genre, Plot;
+    let Poster, Title, imdbRating, Runtime, Genre, Plot, AddedToWatchlist;
 
-    $: if (MovieData) {
-        ({ Poster, Title, imdbRating, Runtime, Genre, Plot } = MovieData);
+    $: if (movieData) {
+        ({ Poster, Title, imdbRating, Runtime, Genre, Plot, AddedToWatchlist } =
+            movieData);
     }
-
 </script>
 
 <li class="movie-card">
@@ -26,8 +26,13 @@
             <p>{Runtime}</p>
             <p>{Genre}</p>
             <div class="watchlist-add">
-                <img alt="" src="/add-icon.svg" />
-                <p>Add to Watchlist</p>
+                {#if AddedToWatchlist}
+                    <img alt="" src="/remove-icon.svg" />
+                    <p>Remove from Watchlist</p>
+                {:else}
+                    <img alt="" src="/add-icon.svg" />
+                    <p>Add to Watchlist</p>
+                {/if}
             </div>
         </div>
         <p class="plot">{Plot}</p>
@@ -44,23 +49,23 @@
         background-color: #23262d;
         background-image: none;
         background-size: 400%;
-        border-radius: 7px;
+        border-radius: 0.5em;
         background-position: 100%;
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
         user-select: none;
     }
-    /* .movie-card > a {
-        width: 100%;
-
-        padding: calc(1.5rem - 1px);
-        border-radius: 8px;
-        background-color: #23262d;
-        opacity: 0.8;
-    } */
 
     .movie-card .movie-poster {
         grid-area: poster;
         max-width: 8em;
+        max-height: 240px;
+    }
+
+    :global(a:has(> img)) {
+        display: flex;
+        align-items: center;
+        min-height: 25vh;
+        max-height: 240px;
     }
 
     .movie-info {
@@ -87,6 +92,13 @@
         width: fit-content;
         justify-content: space-around;
         cursor: pointer;
+        font-size: 1rem;
+        max-height: 3em;
+        margin: 0;
+    }
+
+    .top-info > * {
+        margin: 0;
     }
 
     .top-info .star-icon {
@@ -95,7 +107,7 @@
 
     .mid-info {
         display: flex;
-        font-size: medium;
+        font-size: 1rem;
         justify-content: flex-start;
         gap: 2em;
     }
@@ -116,14 +128,14 @@
 
     .plot {
         margin: 0;
+        font-size: 1rem;
     }
 
-    h2 {
-        margin: 0;
-        font-size: 1.25rem;
+    .movie-card {
+        transition: scale 350ms ease, opacity 350ms linear;
     }
 
     .movie-card:is(:hover, :focus-within) {
-        box-shadow: inset 0 0 0 1px rgba(var(--accent-light), 50%);
+        box-shadow: inset 0 0 0 2px rgba(var(--accent-light), 50%);
     }
 </style>

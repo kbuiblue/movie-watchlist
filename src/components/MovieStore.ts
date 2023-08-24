@@ -7,10 +7,11 @@ export interface Movie {
     Runtime: string;
     Genre: string;
     Plot: string;
+    Error?: string;
 }
 
 export const moviesData = atom<Movie[]>([]);
 
 export function addMovie(movie: Movie) {
-    moviesData.set([...moviesData.get(), movie]);
+    moviesData.set([movie, ...moviesData.get()]);
 }

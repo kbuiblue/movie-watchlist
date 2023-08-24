@@ -14,20 +14,19 @@ const { title, highlight, href, hrefLabel } = Astro.props;
         <h1 class="heading">
             {title}<span class="text-gradient">{highlight}</span>
         </h1>
-        <a href={href}
-            ><h2 class="href-lable">{hrefLabel}</h2></a
-        >
+        <a href={href}><h2 class="href-label">{hrefLabel}</h2></a>
     </div>
 </nav>
 
-
 <style>
     .nav-bar {
+        position: relative;
         background: url("/movie-banner.png");
         display: flex;
-        min-height: 280px;
-        max-height: 300px;
+        min-height: 29vh;
+        max-height: 30vh;
         align-self: flex-start;
+        align-items: center;
         width: 70vw;
         background-repeat: no-repeat;
         background-size: cover;
@@ -39,25 +38,29 @@ const { title, highlight, href, hrefLabel } = Astro.props;
         justify-content: space-between;
         align-items: center;
         width: 90%;
-        max-height: 250px;
+        min-height: 200px;
+        max-height: 10em;
         margin: 0 auto;
-        padding: 1em;
+        margin-bottom: 1em;
         color: #ffffff;
-        font-size: xx-large;
     }
 
     .nav .heading {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        line-height: 0.8;
         margin: 0;
     }
 
-    .nav .href-lable {
-        font-size: large;
+    .nav .href-label {
+        font-size: 1.1rem;
         cursor: pointer;
         user-select: none;
         margin: 0;
     }
 
-    .nav .href-lable:active {
+    .nav .href-label:active {
         color: rgb(var(--accent-light));
     }
 
