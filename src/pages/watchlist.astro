@@ -1,13 +1,7 @@
 ---
-interface Props {
-    title: string;
-    highlight: string;
-}
-
-const { title, highlight } = Astro.props;
-
 import Layout from "../layouts/Layout.astro";
 import NavBar from "../components/NavBar.astro";
+import WatchList from "../components/WatchList.svelte";
 ---
 
 <Layout title="My Watchlist">
@@ -17,6 +11,28 @@ import NavBar from "../components/NavBar.astro";
         href="/"
         hrefLabel="Find your Film"
     />
+    <main>
+        <WatchList client:load />
+    </main>
 </Layout>
 
-<script></script>
+<style>
+    main {
+        margin: 3em auto;
+        align-self: center;
+        width: 900px;
+        max-width: calc(100% - 2rem);
+        color: white;
+        font-size: 1.25rem;
+        line-height: 1.6;
+    }
+    .astro-a {
+        position: absolute;
+        top: -32px;
+        left: 50%;
+        transform: translatex(-50%);
+        width: 220px;
+        height: auto;
+        z-index: -1;
+    }
+</style>

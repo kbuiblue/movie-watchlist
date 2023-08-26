@@ -1,4 +1,6 @@
 import { atom } from "nanostores";
+import { persistentAtom } from "@nanostores/persistent";
+
 
 export interface Movie {
     Poster: string;
@@ -10,13 +12,12 @@ export interface Movie {
     Error?: string;
 }
 
-export interface WatchList {
-    imdbID: string;
-}
-
 export const moviesData = atom<Movie[]>([]);
 
-export const watchList = atom<WatchList[]>([]);
+export const watchList = persistentAtom<[]>("watchlist",[], {
+    encode: JSON.stringify,
+    decode: JSON.parse
+});
 
 export function addMovie(movie: Movie) {
     moviesData.set([movie, ...moviesData.get()]);

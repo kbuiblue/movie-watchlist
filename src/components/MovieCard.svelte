@@ -4,6 +4,7 @@
     import {
         addToWatchList,
         removeFromWatchList,
+        watchList,
     } from "./MovieStore";
 
     let Poster,
@@ -29,11 +30,14 @@
     }
 
     function toggleWatchList() {
-        AddedToWatchList = !AddedToWatchList;
-        if (AddedToWatchList) {
-            addToWatchList(imdbID);
-        } else {
+        const list = watchList.get();
+
+        if (list.includes(imdbID)) {
             removeFromWatchList(imdbID);
+            AddedToWatchList = !AddedToWatchList;
+        } else {
+            addToWatchList(imdbID);
+            AddedToWatchList = !AddedToWatchList;
         }
     }
 </script>

@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/netlify": "^2.6.0",
     "@astrojs/svelte": "^3.1.1",
+    "@nanostores/persistent": "^0.9.1",
     "astro": "^2.10.9",
     "nanostores": "^0.9.3",
     "svelte": "^4.2.0"

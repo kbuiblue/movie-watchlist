@@ -3,11 +3,11 @@
     import { moviesData, isInWatchList } from "./MovieStore";
 
     let movies;
-    let moviesWithWatchList;
+    let moviesInWatchList;
 
     $: {
         const filteredMovies = movies ? movies.filter((movie) => !movie.Error) : [];
-        moviesWithWatchList = filteredMovies.map((movie) => {
+        moviesInWatchList = filteredMovies.map((movie) => {
             return {...movie, AddedToWatchList: isInWatchList(movie.imdbID)}
         })
     }
@@ -20,7 +20,7 @@
 {#if movies && movies.length > 0}
     {#if !movies[0].Error}
         <ul role="list" class="link-card-grid">
-            {#each moviesWithWatchList as movieData}
+            {#each moviesInWatchList as movieData}
                 <MovieCard {movieData} />
             {/each}
         </ul>
