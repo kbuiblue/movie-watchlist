@@ -1,11 +1,40 @@
 <script>
     export let movieData;
 
-    let Poster, Title, imdbRating, Runtime, Genre, Plot, AddedToWatchlist;
+    import {
+        addToWatchList,
+        removeFromWatchList,
+    } from "./MovieStore";
+
+    let Poster,
+        Title,
+        imdbRating,
+        Runtime,
+        Genre,
+        Plot,
+        imdbID,
+        AddedToWatchList;
 
     $: if (movieData) {
-        ({ Poster, Title, imdbRating, Runtime, Genre, Plot, AddedToWatchlist } =
-            movieData);
+        ({
+            Poster,
+            Title,
+            imdbRating,
+            Runtime,
+            Genre,
+            Plot,
+            imdbID,
+            AddedToWatchList,
+        } = movieData);
+    }
+
+    function toggleWatchList() {
+        AddedToWatchList = !AddedToWatchList;
+        if (AddedToWatchList) {
+            addToWatchList(imdbID);
+        } else {
+            removeFromWatchList(imdbID);
+        }
     }
 </script>
 
@@ -25,8 +54,18 @@
         <div class="mid-info">
             <p>{Runtime}</p>
             <p>{Genre}</p>
-            <div class="watchlist-add">
-                {#if AddedToWatchlist}
+            <div
+                on:click={toggleWatchList}
+                on:keydown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        toggleWatchList();
+                    }
+                }}
+                role="button"
+                tabindex="0"
+                class="watchlist-add"
+            >
+                {#if AddedToWatchList}
                     <img alt="" src="/remove-icon.svg" />
                     <p>Remove from Watchlist</p>
                 {:else}
@@ -135,7 +174,7 @@
         transition: scale 350ms ease, opacity 350ms linear;
     }
 
-    .movie-card:is(:hover, :focus-within) {
+    .movie-card:is(:hover) {
         box-shadow: inset 0 0 0 2px rgba(var(--accent-light), 50%);
     }
 </style>

@@ -1,9 +1,17 @@
 <script>
     import MovieCard from "./MovieCard.svelte";
-    import { moviesData } from "./MovieStore";
+    import { moviesData, isInWatchList } from "./MovieStore";
 
     let movies;
-    $: filteredMovies = movies ? movies.filter((movie) => !movie.Error) : [];
+    let moviesWithWatchList;
+
+    $: {
+        const filteredMovies = movies ? movies.filter((movie) => !movie.Error) : [];
+        moviesWithWatchList = filteredMovies.map((movie) => {
+            return {...movie, AddedToWatchList: isInWatchList(movie.imdbID)}
+        })
+    }
+
     moviesData.subscribe((value) => {
         movies = value;
     });
@@ -12,7 +20,7 @@
 {#if movies && movies.length > 0}
     {#if !movies[0].Error}
         <ul role="list" class="link-card-grid">
-            {#each filteredMovies as movieData}
+            {#each moviesWithWatchList as movieData}
                 <MovieCard {movieData} />
             {/each}
         </ul>
