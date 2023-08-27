@@ -6,10 +6,12 @@
     let moviesInWatchList;
 
     $: {
-        const filteredMovies = movies ? movies.filter((movie) => !movie.Error) : [];
+        const filteredMovies = movies
+            ? movies.filter((movie) => !movie.Error)
+            : [];
         moviesInWatchList = filteredMovies.map((movie) => {
-            return {...movie, AddedToWatchList: isInWatchList(movie.imdbID)}
-        })
+            return { ...movie, AddedToWatchList: isInWatchList(movie.imdbID) };
+        });
     }
 
     moviesData.subscribe((value) => {

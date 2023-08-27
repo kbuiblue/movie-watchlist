@@ -4,16 +4,17 @@
     import {
         addToWatchList,
         removeFromWatchList,
+        isInWatchList,
         watchList,
     } from "./MovieStore";
 
     let Poster,
         Title,
         imdbRating,
+        imdbID,
         Runtime,
         Genre,
         Plot,
-        imdbID,
         AddedToWatchList;
 
     $: if (movieData) {
@@ -21,10 +22,10 @@
             Poster,
             Title,
             imdbRating,
+            imdbID,
             Runtime,
             Genre,
             Plot,
-            imdbID,
             AddedToWatchList,
         } = movieData);
     }
@@ -32,13 +33,15 @@
     function toggleWatchList() {
         const list = watchList.get();
 
-        if (list.includes(imdbID)) {
+        if (isInWatchList(imdbID)) {
             removeFromWatchList(imdbID);
             AddedToWatchList = !AddedToWatchList;
         } else {
             addToWatchList(imdbID);
             AddedToWatchList = !AddedToWatchList;
         }
+
+        console.log(list)
     }
 </script>
 

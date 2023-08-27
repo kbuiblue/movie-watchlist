@@ -2,55 +2,52 @@
     import MovieCard from "./MovieCard.svelte";
     import { watchList } from "./MovieStore";
 
-    let movieDataPromises = [];
     let movieDataArray = [];
 
-    const api = import.meta.env.PUBLIC_OMDB_KEY;
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const promise = delay(1000);
 
-    async function fetchMovieById(imdbID) {
-        const response = await fetch(
-            `https://www.omdbapi.com/?i=${imdbID}&apikey=${api}`
+    $: {
+        movieDataArray = movieDataArray.filter(
+            (movie) => movie.AddedToWatchList
         );
-        return await response.json();
     }
 
     watchList.subscribe(async () => {
-        const movieIDs = watchList.get();
-        movieDataPromises = await Promise.allSettled(
-            movieIDs.map(fetchMovieById)
-        );
-        movieDataArray = movieDataPromises
-            .filter((result) => result.status === "fulfilled")
-            .map((result) => ({
-                ...result.value,
-                AddedToWatchList: true,
-            }));
+        const movies = watchList.get();
+
+        movieDataArray = movies.map((movie) => ({
+            ...movie,
+            AddedToWatchList: true,
+        }));
     });
 </script>
 
-{#if movieDataPromises && movieDataArray.length === 0}
+{#await promise}
     <div class="loading-container">
         <div class="loading-screen">
             <h3>Loading...</h3>
         </div>
     </div>
-{:else if movieDataArray.length > 0}
-    <ul role="list" class="link-card-grid">
-        {#each movieDataArray as movieData}
-            <MovieCard {movieData} />
-        {/each}
-    </ul>
-{:else}
-    <div class="empty-container">
-        <div class="empty-screen">
-            <h3>Your watchlist is looking a little empty...</h3>
-            <a href="/" class="add-movies">
-                <img alt="" src="/add-icon.svg" />
-                <p>Let’s add some movies!</p>
-            </a>
+{:then}
+    {#if movieDataArray.length > 0}
+        <ul role="list" class="link-card-grid">
+            {#each movieDataArray as movieData}
+                <MovieCard {movieData} />
+            {/each}
+        </ul>
+    {:else}
+        <div class="empty-container">
+            <div class="empty-screen">
+                <h3>Your watchlist is looking a little empty...</h3>
+                <a href="/" class="add-movies">
+                    <img alt="" src="/add-icon.svg" />
+                    <p>Let’s add some movies!</p>
+                </a>
+            </div>
         </div>
-    </div>
-{/if}
+    {/if}
+{/await}
 
 <style>
     .link-card-grid {
