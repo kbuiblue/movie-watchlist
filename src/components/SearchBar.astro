@@ -7,7 +7,7 @@
 </div>
 
 <script>
-    import { Movie, addMovie } from "./MovieStore";
+    import { Movie, renderMovie } from "./MovieStore";
 
     const api = (await import.meta.env.PUBLIC_OMDB_KEY) as string;
 
@@ -15,6 +15,25 @@
     const button = document.querySelector<HTMLButtonElement>("button");
 
     if (button && input) {
+        input.addEventListener("keydown", async (e) => {
+            const searchTerm: string = input.value
+                .toLowerCase()
+                .trim()
+                .replace(" ", "+");
+
+            if (e.key === "Enter") {
+                const response = await fetch(
+                    `https://www.omdbapi.com/?t=${searchTerm}&apikey=${api}`
+                );
+                //TODO: Add proper error handling
+
+                const data: Movie = await response.json();
+
+                renderMovie(data);
+                input.value = "";
+            }
+        });
+
         button.addEventListener("click", async () => {
             const searchTerm: string = input.value
                 .toLowerCase()
@@ -28,7 +47,7 @@
 
             const data: Movie = await response.json();
 
-            addMovie(data);
+            renderMovie(data);
             input.value = "";
         });
     }

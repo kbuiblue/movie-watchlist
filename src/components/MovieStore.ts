@@ -37,7 +37,7 @@ export const watchList = persistentAtom<Movie[]>("watchlist", [], {
     decode: JSON.parse,
 });
 
-export function addMovie(movie: Movie) {
+export function renderMovie(movie: Movie) {
     moviesData.set([movie, ...moviesData.get()]);
 }
 
