@@ -1,10 +1,12 @@
-<script>
+<script lang="ts">
     import MovieCard from "./MovieCard.svelte";
     import { watchList } from "./MovieStore";
+    import type { Movie } from "./MovieStore";
 
-    let movieDataArray = [];
+    let movieDataArray: Movie[] = [];
 
-    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const delay = (ms: number) =>
+        new Promise((resolve) => setTimeout(resolve, ms));
     const promise = delay(1000);
 
     $: {
@@ -50,13 +52,6 @@
 {/await}
 
 <style>
-    .link-card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
-        gap: 2rem;
-        padding: 0;
-    }
-
     .empty-container,
     .loading-container {
         display: flex;
@@ -95,5 +90,17 @@
     .add-movies > * {
         margin: 0;
         line-height: 0.7;
+    }
+
+    .link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
+        gap: 2rem;
+        padding: 0;
+    }
+
+    :global(.link-card-grid:has(.movie-card:hover) .movie-card:not(:hover)) {
+        scale: 0.98;
+        opacity: 0.7;
     }
 </style>

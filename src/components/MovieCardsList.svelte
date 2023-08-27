@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
     import MovieCard from "./MovieCard.svelte";
     import { moviesData, isInWatchList } from "./MovieStore";
+    import type { Movie } from "./MovieStore";
 
-    let movies;
-    let moviesInWatchList;
+    let movies: readonly Movie[];
+    let moviesInWatchList: Movie[];
 
     $: {
         const filteredMovies = movies

@@ -1,21 +1,30 @@
-<script>
-    export let movieData;
+<script lang="ts">
 
     import {
-        addToWatchList,
-        removeFromWatchList,
+        addMovieToWatchList,
+        removeMovieFromWatchList,
         isInWatchList,
-        watchList,
     } from "./MovieStore";
 
-    let Poster,
-        Title,
-        imdbRating,
-        imdbID,
-        Runtime,
-        Genre,
-        Plot,
-        AddedToWatchList;
+    export let movieData: {
+        AddedToWatchList: boolean;
+        Poster: string;
+        Title: string;
+        imdbRating: string;
+        imdbID: string;
+        Runtime: string;
+        Genre: string;
+        Plot: string;
+    }
+
+    let Poster: string,
+        Title : string,
+        imdbRating : string,
+        imdbID : string,
+        Runtime : string,
+        Genre : string,
+        Plot : string,
+        AddedToWatchList : boolean;
 
     $: if (movieData) {
         ({
@@ -31,17 +40,13 @@
     }
 
     function toggleWatchList() {
-        const list = watchList.get();
-
         if (isInWatchList(imdbID)) {
-            removeFromWatchList(imdbID);
+            removeMovieFromWatchList(imdbID);
             AddedToWatchList = !AddedToWatchList;
         } else {
-            addToWatchList(imdbID);
+            addMovieToWatchList(imdbID);
             AddedToWatchList = !AddedToWatchList;
         }
-
-        console.log(list)
     }
 </script>
 
