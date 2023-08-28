@@ -51,17 +51,18 @@
 </script>
 
 <li class="movie-card">
-    <a href="/movie-details">
+    <!-- TODO: Add page that fetch and render specific movie's detailed info-->
+    <!-- <a href="/movie-details"> -->
         <img class="movie-poster" alt="" src={Poster} />
-    </a>
+    <!-- </a> -->
     <div class="movie-info">
-        <a href="/movie-details">
+        <!-- <a href="/movie-details"> -->
             <div class="top-info">
                 <h2>{Title}</h2>
                 <img class="star-icon" alt="" src="/star-icon.svg" />
                 <h2>{imdbRating}</h2>
             </div>
-        </a>
+        <!-- </a> -->
 
         <div class="mid-info">
             <p>{Runtime}</p>
@@ -127,12 +128,12 @@
         justify-content: center;
     }
 
-    .movie-info,
+    /* .movie-info,
     .movie-info a {
         color: white;
         text-decoration: none;
         line-height: 1.4;
-    }
+    } */
 
     .movie-info > div {
         margin-bottom: 1em;
@@ -142,7 +143,7 @@
         display: flex;
         width: fit-content;
         justify-content: space-around;
-        cursor: pointer;
+        /* cursor: pointer; */
         font-size: 1rem;
         max-height: 3em;
         margin: 0;
