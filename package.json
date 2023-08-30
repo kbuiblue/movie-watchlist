@@ -2,6 +2,10 @@
   "name": "movie-watchlist",
   "type": "module",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=10",
+    "pnpm": ">=3"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,10 +14,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^2.6.0",
-    "@astrojs/svelte": "^3.1.1",
+    "@astrojs/svelte": "^4.0.0",
     "@nanostores/persistent": "^0.9.1",
-    "astro": "^2.10.9",
+    "astro": "^3.0.2",
     "nanostores": "^0.9.3",
     "svelte": "^4.2.0"
   }
